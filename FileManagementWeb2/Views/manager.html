@@ -1,0 +1,56 @@
+﻿<div class="row">
+    <div class="col-lg-2">
+        <button class="btn btn-default">NEW</button>
+        <div class="list-group mt-4" ng-init="selectedTab = 'tab1'">
+            <a href="#" class="list-group-item list-group-item-action" ng-class="{'active':selectedTab === 'tab1'}" ng-click="selectedTab = 'tab1'">
+                <i class="fa fa-caret-right" aria-hidden="true"></i><i class="fa fa-home" aria-hidden="true"></i><span><strong>&nbsp;&nbsp;&nbsp;My Drive</strong></span>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action" ng-class="{'active':selectedTab === 'tab2'}" ng-click="selectedTab = 'tab2'">
+                <i class="fa fa-caret-right" aria-hidden="true"></i><i class="fa fa-trash" aria-hidden="true"></i><span><strong>&nbsp;&nbsp;&nbsp;Trash</strong></span>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action" ng-class="{'active':selectedTab === 'tab3'}" ng-click="selectedTab = 'tab3'">
+                <i class="fa fa-caret-right" aria-hidden="true"></i><i class="fa fa-tasks" aria-hidden="true"></i><span><strong>&nbsp;&nbsp;&nbsp;Upgrade Storage</strong></span>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-10 my-5 my-lg-0 border border-primary border-right-0 border-top-0 border-bottom-0">
+        <div class="row">
+            <div class="col-md-4">
+                <input class="form-control my-search" type="text" placeholder="Search">
+            </div>
+            <div class="col-md-8">
+                <div class="row justify-content-end my-3 my-md-0">
+                    <div class="col-auto">
+                        <bottun class="btn btn-primary" ng-click="buttonOnClick(0)"><i class="fa fa-step-backward" aria-hidden="true"></i></bottun>
+                        <bottun class="btn btn-primary" ng-click="buttonOnClick(1)"><i class="fa fa-backward" aria-hidden="true"></i></bottun>
+                        <bottun class="btn btn-primary" ng-click="buttonOnClick(2)"><i class="fa fa-forward" aria-hidden="true"></i></bottun>
+                        <bottun class="btn btn-primary" ng-click="buttonOnClick(3)"><i class="fa fa-step-forward" aria-hidden="true"></i></bottun>
+                    </div>
+                    <div class="col-auto offset-1">
+                        <span class="d-inline">
+                            <span class="h4" ng-bind="page"></span>
+                            <span class="h4">  from  </span>
+                            <span class="h4" ng-bind="myData.length/10"></span>
+                        </span>
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive my-5">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col" ng-click="sortData('name')">Name <div ng-class="getSortClass('name')"></div></th>
+                        <th scope="col" ng-click="sortData('last modified')">Last modified <div ng-class="getSortClass('last modified')"></div></th>
+                        <th scope="col" ng-click="sortData('file size')">File size <div ng-class="getSortClass('file size')"></div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="x in myData | limitTo:to:from | orderBy:sortColumn:reverseSort">
+                        <td ng-repeat="y in x">{{y}}</td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
